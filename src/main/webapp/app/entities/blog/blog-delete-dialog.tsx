@@ -18,7 +18,7 @@ export const BlogDeleteDialog = (props: RouteComponentProps<{ id: string }>) => 
   const updateSuccess = useAppSelector(state => state.blog.updateSuccess);
 
   const handleClose = () => {
-    props.history.push('/blog');
+    props.history.push('/blog' + props.location.search);
   };
 
   useEffect(() => {
