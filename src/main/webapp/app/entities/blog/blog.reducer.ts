@@ -11,7 +11,6 @@ const initialState: EntityState<IBlog> = {
   entities: [],
   entity: defaultValue,
   updating: false,
-  totalItems: 0,
   updateSuccess: false,
 };
 
@@ -20,7 +19,7 @@ const apiUrl = 'api/blogs';
 // Actions
 
 export const getEntities = createAsyncThunk('blog/fetch_entity_list', async ({ page, size, sort }: IQueryParams) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}&` : '?'}cacheBuster=${new Date().getTime()}`;
+  const requestUrl = `${apiUrl}?cacheBuster=${new Date().getTime()}`;
   return axios.get<IBlog[]>(requestUrl);
 });
 
@@ -95,7 +94,6 @@ export const BlogSlice = createEntitySlice({
           ...state,
           loading: false,
           entities: action.payload.data,
-          totalItems: parseInt(action.payload.headers['x-total-count'], 10),
         };
       })
       .addMatcher(isFulfilled(createEntity, updateEntity, partialUpdateEntity), (state, action) => {

@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.demo.blog.IntegrationTest;
 import com.demo.blog.domain.Entry;
 import com.demo.blog.repository.EntryRepository;
+import com.demo.blog.service.EntryService;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -60,6 +61,9 @@ class EntryResourceIT {
 
     @Mock
     private EntryRepository entryRepositoryMock;
+
+    @Mock
+    private EntryService entryServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -151,20 +155,20 @@ class EntryResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllEntriesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(entryRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(entryServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restEntryMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(entryRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(entryServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllEntriesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(entryRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(entryServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restEntryMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(entryRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(entryServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
