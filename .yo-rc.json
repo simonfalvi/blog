@@ -42,6 +42,8 @@
     "devServerPort": 9060,
     "clientPackageManager": "npm",
     "languages": ["en", "ca"],
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Blog", "Entry", "Tag"],
+    "lastLiquibaseTimestamp": 1632756960000
   }
 }
