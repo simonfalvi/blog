@@ -7,7 +7,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
-        Added the entity Tag.
+        Added the entity Animals.
     -->
     <changeSet id="20210928153601-1" author="ildi">
         <createTable tableName="animals">

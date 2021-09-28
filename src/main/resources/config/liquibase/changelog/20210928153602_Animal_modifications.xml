@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Modifications on the entity Animals. Drop type column, id type int
+    -->
+    <changeSet id="20210928153602-1" author="ildi">
+        <renameColumn newColumnName="animal_name"
+                      oldColumnName="name"
+                      tableName="animals"/>
+    </changeSet>
+
+    <changeSet  author="ildi"  id="20210928153602-2">
+        <modifyDataType  columnName="id"
+                         newDataType="int"
+                         tableName="animals"/>
+    </changeSet>
+
+    <changeSet  author="ildi"  id="20210928153602-3">
+        <dropColumn  columnName="type"
+                     tableName="animals"/>
+    </changeSet>
+
+</databaseChangeLog>

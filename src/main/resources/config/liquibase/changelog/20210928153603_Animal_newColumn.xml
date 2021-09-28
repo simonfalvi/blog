@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Modifications on the entity Animals. New column: age
+    -->
+    <changeSet id="20210928153603-1" author="ildi">
+        <addColumn  tableName="animals" >
+            <column name="age"
+                    position="3"
+                    type="int"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet  author="ildi"  id="20210928153603-2">
+        <update tableName="animals">
+            <column name="age" value="10"/>
+            <where>id=1</where>
+        </update>
+    </changeSet>
+
+    <changeSet  author="ildi"  id="20210928153603-3">
+        <insert tableName="animals">
+            <column  name="id"  value="4"/>
+            <column  name="animal_name"  value="giraffe"/>
+            <column  name="age"  value="100"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
